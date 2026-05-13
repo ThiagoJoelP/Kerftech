@@ -13,6 +13,13 @@ const PIEZA_DEFAULT = () => ({
   cantoDer: false,
 })
 
+const CANTOS = [
+  { key: 'cantoArriba', label: 'Arr. \u2191' },
+  { key: 'cantoAbajo',  label: 'Abj. \u2193' },
+  { key: 'cantoIzq',   label: 'Izq. \u2190' },
+  { key: 'cantoDer',   label: 'Der. \u2192' },
+]
+
 export default function TablaPiezas({ piezas, onChange }) {
   const agregar = () => onChange([...piezas, PIEZA_DEFAULT()])
 
@@ -41,10 +48,9 @@ export default function TablaPiezas({ piezas, onChange }) {
               <th>Cant.</th>
               <th>Ancho (mm)</th>
               <th>Largo (mm)</th>
-              <th title="Canto Arriba">CA</th>
-              <th title="Canto Abajo">CB</th>
-              <th title="Canto Izquierda">CI</th>
-              <th title="Canto Derecha">CD</th>
+              {CANTOS.map((c) => (
+                <th key={c.key} title={c.key.replace('canto', 'Canto ')}>{c.label}</th>
+              ))}
               <th></th>
             </tr>
           </thead>
@@ -86,12 +92,12 @@ export default function TablaPiezas({ piezas, onChange }) {
                     onChange={(e) => actualizar(p._id, 'largo', e.target.value)}
                   />
                 </td>
-                {['cantoArriba', 'cantoAbajo', 'cantoIzq', 'cantoDer'].map((key) => (
-                  <td key={key} className={styles.tdCheck}>
+                {CANTOS.map((c) => (
+                  <td key={c.key} className={styles.tdCheck}>
                     <input
                       type="checkbox"
-                      checked={!!p[key]}
-                      onChange={(e) => actualizar(p._id, key, e.target.checked)}
+                      checked={!!p[c.key]}
+                      onChange={(e) => actualizar(p._id, c.key, e.target.checked)}
                     />
                   </td>
                 ))}
