@@ -1,0 +1,83 @@
+.page { max-width: 700px; }
+
+.pageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-6);
+}
+
+.btnGuardar {
+  padding: 9px var(--space-5);
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.875rem;
+  font-weight: 600;
+  cursor: pointer;
+  box-shadow: 0 1px 4px rgba(224,123,0,0.25);
+  transition: background 0.15s, box-shadow 0.15s;
+}
+.btnGuardar:hover { background: var(--color-primary-hover); }
+.btnGuardar:disabled { opacity: 0.5; cursor: not-allowed; }
+
+.guardado {
+  background: var(--color-success);
+  box-shadow: 0 1px 4px rgba(22,163,74,0.25);
+}
+.guardado:hover { background: var(--color-success); }
+
+.seccion {
+  background: var(--color-surface);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-5) var(--space-6);
+  margin-bottom: var(--space-5);
+}
+
+.seccionLabel {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-text-light);
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-4);
+}
+
+.formGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: var(--space-4);
+}
+
+.field { display: flex; flex-direction: column; }
+.fieldFull { grid-column: 1 / -1; }
+
+.cuentaInfo {
+  display: flex;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-3) var(--space-4);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+}
+
+.cuentaLabel {
+  font-size: 0.78rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  min-width: 60px;
+}
+
+.cuentaVal {
+  font-size: 0.9rem;
+  color: var(--color-text);
+  font-family: var(--font-mono);
+}
+
+.estado { color: var(--color-text-muted); padding: var(--space-6) 0; }
