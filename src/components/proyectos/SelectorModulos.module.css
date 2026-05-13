@@ -1,21 +1,23 @@
 .overlay {
   position: fixed;
   inset: 0;
-  background: rgba(0,0,0,0.4);
+  background: rgba(0,0,0,0.5);
   display: flex;
   align-items: center;
   justify-content: center;
   z-index: 100;
+  backdrop-filter: blur(2px);
 }
 
 .panel {
   background: var(--color-surface);
   border-radius: var(--radius-lg);
-  width: 480px;
-  max-height: 70vh;
+  width: 500px;
+  max-height: 72vh;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+  box-shadow: var(--shadow-lg);
+  border: 1px solid var(--color-border);
 }
 
 .panelHeader {
@@ -26,45 +28,32 @@
   border-bottom: 1px solid var(--color-border);
 }
 
-.panelHeader h3 { font-size: 1rem; }
+.panelHeader h3 { font-size: 0.95rem; font-weight: 600; }
 
 .btnCerrar {
   background: transparent;
   border: none;
-  font-size: 1.1rem;
+  font-size: 1rem;
   cursor: pointer;
   color: var(--color-text-muted);
-  padding: var(--space-1);
+  padding: 4px 8px;
+  border-radius: var(--radius-sm);
+  transition: background 0.12s;
 }
+.btnCerrar:hover { background: var(--color-surface-hover); color: var(--color-text); }
 
 .filtros {
   display: flex;
   gap: var(--space-2);
   padding: var(--space-3) var(--space-5);
   border-bottom: 1px solid var(--color-border);
+  background: var(--color-bg);
 }
 
-.buscador {
-  flex: 1;
-  padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  font-size: 0.9rem;
-}
-.buscador:focus { outline: none; border-color: var(--color-border-focus); }
+.buscador { flex: 1; }
+.filtroSelect { min-width: 130px; }
 
-.filtroSelect {
-  padding: var(--space-2) var(--space-2);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  font-size: 0.85rem;
-  background: var(--color-surface);
-}
-
-.lista {
-  overflow-y: auto;
-  padding: var(--space-2) 0;
-}
+.lista { overflow-y: auto; padding: var(--space-2) 0; }
 
 .itemModulo {
   display: flex;
@@ -77,10 +66,12 @@
   text-align: left;
   cursor: pointer;
   transition: background 0.1s;
+  border-bottom: 1px solid var(--color-border);
 }
+.itemModulo:last-child { border-bottom: none; }
 .itemModulo:hover { background: var(--color-bg); }
 
-.itemNombre { font-size: 0.95rem; font-weight: 600; color: var(--color-text); }
-.itemMeta { font-size: 0.78rem; color: var(--color-text-muted); }
+.itemNombre { font-size: 0.9rem; font-weight: 600; color: var(--color-text); }
+.itemMeta { font-size: 0.75rem; color: var(--color-text-muted); text-transform: capitalize; }
 
-.vacio { padding: var(--space-4) var(--space-5); color: var(--color-text-muted); font-size: 0.9rem; }
+.vacio { padding: var(--space-5) var(--space-5); color: var(--color-text-muted); font-size: 0.875rem; }
