@@ -1,0 +1,77 @@
+.wrapper {
+  overflow-x: auto;
+}
+
+.tabla {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+}
+
+.tabla th {
+  text-align: left;
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 2px solid var(--color-border);
+  color: var(--color-text-muted);
+  font-weight: 600;
+  font-size: 0.8rem;
+  text-transform: uppercase;
+  letter-spacing: 0.03em;
+  white-space: nowrap;
+}
+
+.tabla td {
+  padding: var(--space-2) var(--space-3);
+  border-bottom: 1px solid var(--color-border);
+  cursor: pointer;
+  vertical-align: middle;
+}
+
+.tabla tr:hover td {
+  background: var(--color-surface-hover);
+}
+
+.tabla tr:last-child td {
+  border-bottom: none;
+}
+
+.celda {
+  display: block;
+  min-height: 24px;
+}
+
+.inputEdit {
+  width: 100%;
+  padding: var(--space-1) var(--space-2);
+  border: 1px solid var(--color-border-focus);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-family: inherit;
+  background: var(--color-surface);
+}
+
+.inputEdit:focus {
+  outline: none;
+}
+
+.btnEliminar {
+  padding: var(--space-1) var(--space-2);
+  background: transparent;
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.8rem;
+  color: var(--color-text-muted);
+  cursor: pointer;
+  transition: border-color 0.15s, color 0.15s;
+}
+
+.btnEliminar:hover {
+  border-color: var(--color-danger);
+  color: var(--color-danger);
+}
+
+.estado {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  padding: var(--space-4) 0;
+}
