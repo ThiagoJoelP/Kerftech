@@ -16,7 +16,12 @@ export default function Sidebar() {
 
   return (
     <aside className={styles.sidebar}>
-      <div className={styles.logo}>Kerftech</div>
+      <div className={styles.logoWrap}>
+        <div className={styles.logo}>
+          <span className={styles.logoAccent} />
+          Kerftech
+        </div>
+      </div>
       <nav className={styles.nav}>
         {navItems.map(({ to, label, end }) => (
           <NavLink
@@ -31,9 +36,11 @@ export default function Sidebar() {
           </NavLink>
         ))}
       </nav>
-      <button className={styles.logout} onClick={handleLogout}>
-        Cerrar sesion
-      </button>
+      <div className={styles.logoutWrap}>
+        <button className={styles.logout} onClick={handleLogout}>
+          Cerrar sesion
+        </button>
+      </div>
     </aside>
   )
 }
