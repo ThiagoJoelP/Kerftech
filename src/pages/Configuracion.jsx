@@ -11,7 +11,20 @@ const DEFAULTS = {
   porcentajeGananciaDefault: 40,
   moneda: 'ARS',
   notaPresupuesto: '',
+  pdf: {
+    mostrarNombre: true,
+    mostrarTelefono: true,
+    mostrarEmail: true,
+    mostrarCliente: true,
+  },
 }
+
+const TOGGLES_PDF = [
+  { key: 'mostrarNombre', label: 'Mostrar nombre del negocio' },
+  { key: 'mostrarTelefono', label: 'Mostrar telefono' },
+  { key: 'mostrarEmail', label: 'Mostrar email' },
+  { key: 'mostrarCliente', label: 'Mostrar datos del cliente' },
+]
 
 export default function Configuracion() {
   const { user } = useAuth()
@@ -23,7 +36,7 @@ export default function Configuracion() {
   useEffect(() => {
     async function cargar() {
       const data = await getConfiguracion(user.uid)
-      if (data) setForm((f) => ({ ...f, ...data }))
+      if (data) setForm((f) => ({ ...f, ...data, pdf: { ...DEFAULTS.pdf, ...(data.pdf || {}) } }))
       setLoading(false)
     }
     cargar()
@@ -31,6 +44,11 @@ export default function Configuracion() {
 
   const setField = (key, val) => {
     setForm((f) => ({ ...f, [key]: val }))
+    setGuardado(false)
+  }
+
+  const setPdfField = (key, val) => {
+    setForm((f) => ({ ...f, pdf: { ...f.pdf, [key]: val } }))
     setGuardado(false)
   }
 
@@ -129,6 +147,23 @@ export default function Configuracion() {
               placeholder="Ej: Presupuesto valido por 15 dias. Precios sujetos a variacion."
             />
           </div>
+        </div>
+      </div>
+
+      <div className={styles.seccion}>
+        <p className={styles.seccionLabel}>Visibilidad en PDF</p>
+        <p className={styles.seccionHint}>Elegí que informacion aparece en los presupuestos generados.</p>
+        <div className={styles.togglesGrid}>
+          {TOGGLES_PDF.map(({ key, label }) => (
+            <label key={key} className={styles.toggleRow}>
+              <input
+                type="checkbox"
+                checked={!!form.pdf?.[key]}
+                onChange={(e) => setPdfField(key, e.target.checked)}
+              />
+              <span>{label}</span>
+            </label>
+          ))}
         </div>
       </div>
 
