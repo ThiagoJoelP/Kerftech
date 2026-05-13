@@ -28,7 +28,10 @@ export default function Login() {
   return (
     <div className={styles.container}>
       <div className={styles.card}>
-        <h1 className={styles.title}>Kerftech</h1>
+        <div className={styles.logoMark}>
+          <span className={styles.dot} />
+          <span className={styles.title}>Kerftech</span>
+        </div>
         <p className={styles.subtitle}>Gestion de presupuestos</p>
         <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.field}>
