@@ -7,7 +7,6 @@ import {
   query,
   where,
   serverTimestamp,
-  orderBy,
 } from 'firebase/firestore'
 import { db } from '@/firebase/config'
 
@@ -18,11 +17,16 @@ function materialesRef(userId) {
 export async function getMateriales(userId) {
   const q = query(
     materialesRef(userId),
-    where('activo', '==', true),
-    orderBy('creadoEn', 'asc')
+    where('activo', '==', true)
   )
   const snap = await getDocs(q)
-  return snap.docs.map((d) => ({ id: d.id, ...d.data() }))
+  const docs = snap.docs.map((d) => ({ id: d.id, ...d.data() }))
+  // Ordenar en memoria por fecha de creacion (evita indice compuesto en Firestore)
+  return docs.sort((a, b) => {
+    const ta = a.creadoEn?.toMillis?.() ?? 0
+    const tb = b.creadoEn?.toMillis?.() ?? 0
+    return ta - tb
+  })
 }
 
 export async function addMaterial(userId, data) {
