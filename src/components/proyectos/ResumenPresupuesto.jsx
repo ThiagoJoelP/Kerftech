@@ -10,26 +10,28 @@ export default function ResumenPresupuesto({ lineas, totales }) {
       {lineas.length === 0 ? (
         <p className={styles.vacio}>Agrega modulos para ver el resumen.</p>
       ) : (
-        <table className={styles.tabla}>
-          <thead>
-            <tr>
-              <th>Material</th>
-              <th>Cantidad</th>
-              <th>Precio unit.</th>
-              <th>Subtotal</th>
-            </tr>
-          </thead>
-          <tbody>
-            {lineas.map((l) => (
-              <tr key={l.materialId}>
-                <td>{l.nombre}</td>
-                <td>{l.cantidad} {l.unidad}{l.cantidad !== 1 ? 's' : ''}</td>
-                <td>{fmt(l.precioUnitario)}</td>
-                <td>{fmt(l.subtotal)}</td>
+        <div className={styles.tablaWrap}>
+          <table className={styles.tabla}>
+            <thead>
+              <tr>
+                <th>Material</th>
+                <th>Cantidad</th>
+                <th>Precio unit.</th>
+                <th>Subtotal</th>
               </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {lineas.map((l) => (
+                <tr key={l.materialId}>
+                  <td>{l.nombre}</td>
+                  <td>{l.cantidad} {l.unidad}{l.cantidad !== 1 ? 's' : ''}</td>
+                  <td>{fmt(l.precioUnitario)}</td>
+                  <td>{fmt(l.subtotal)}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
       )}
 
       <div className={styles.totales}>
