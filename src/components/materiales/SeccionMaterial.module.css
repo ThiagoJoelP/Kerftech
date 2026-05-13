@@ -2,19 +2,21 @@
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: var(--space-6);
-  margin-bottom: var(--space-6);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-5) var(--space-6);
+  margin-bottom: var(--space-5);
 }
 
 .header {
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-5);
 }
 
 .header h2 {
-  font-size: 1.1rem;
+  font-size: 1.05rem;
+  font-weight: 600;
   color: var(--color-text);
 }
 
@@ -25,16 +27,16 @@
 }
 
 .filtro {
-  padding: var(--space-2) var(--space-3);
-  border: 1px solid var(--color-border);
+  padding: 7px var(--space-3);
+  border: 1.5px solid var(--color-input-border);
   border-radius: var(--radius-sm);
   font-size: 0.85rem;
-  background: var(--color-bg);
+  background: var(--color-input-bg);
   color: var(--color-text);
 }
 
 .btnAgregar {
-  padding: var(--space-2) var(--space-4);
+  padding: 8px var(--space-4);
   background: var(--color-primary);
   color: #fff;
   border: none;
@@ -42,50 +44,35 @@
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
-  transition: background 0.15s;
+  transition: background 0.15s, box-shadow 0.15s;
+  box-shadow: 0 1px 4px rgba(224,123,0,0.25);
 }
 
 .btnAgregar:hover {
   background: var(--color-primary-hover);
+  box-shadow: 0 2px 8px rgba(224,123,0,0.35);
 }
 
 .formNuevo {
   display: flex;
   flex-wrap: wrap;
-  gap: var(--space-3);
-  padding: var(--space-4);
+  gap: var(--space-4);
+  padding: var(--space-4) var(--space-5);
   background: var(--color-bg);
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
   border-radius: var(--radius-sm);
-  margin-bottom: var(--space-4);
+  margin-bottom: var(--space-5);
 }
 
 .formField {
   display: flex;
   flex-direction: column;
-  gap: var(--space-1);
   min-width: 140px;
-}
-
-.formField label {
-  font-size: 0.8rem;
-  color: var(--color-text-muted);
-  font-weight: 500;
 }
 
 .formField input,
 .formField select {
-  padding: var(--space-2) var(--space-2);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  font-size: 0.9rem;
-  background: var(--color-surface);
-}
-
-.formField input:focus,
-.formField select:focus {
-  outline: none;
-  border-color: var(--color-border-focus);
+  margin-top: 0;
 }
 
 .formActions {
@@ -95,7 +82,7 @@
 }
 
 .btnGuardar {
-  padding: var(--space-2) var(--space-4);
+  padding: 8px var(--space-4);
   background: var(--color-primary);
   color: #fff;
   border: none;
@@ -103,25 +90,35 @@
   font-size: 0.85rem;
   font-weight: 600;
   cursor: pointer;
+  box-shadow: 0 1px 4px rgba(224,123,0,0.25);
 }
 
 .btnGuardar:disabled {
-  opacity: 0.6;
+  opacity: 0.5;
   cursor: not-allowed;
+  box-shadow: none;
 }
 
 .btnCancelar {
-  padding: var(--space-2) var(--space-3);
+  padding: 8px var(--space-3);
   background: transparent;
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
   border-radius: var(--radius-sm);
   font-size: 0.85rem;
   cursor: pointer;
   color: var(--color-text-muted);
+  transition: border-color 0.15s;
+}
+
+.btnCancelar:hover {
+  border-color: var(--color-border-strong);
 }
 
 .error {
   color: var(--color-danger);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   margin-bottom: var(--space-3);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-danger-bg);
+  border-radius: var(--radius-sm);
 }

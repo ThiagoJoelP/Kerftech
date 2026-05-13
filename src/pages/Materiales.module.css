@@ -1,5 +1,5 @@
 .page {
-  max-width: 960px;
+  max-width: 980px;
 }
 
 .pageHeader {
@@ -7,10 +7,10 @@
 }
 
 .pageHeader h1 {
-  margin-bottom: var(--space-1);
+  margin-bottom: 4px;
 }
 
 .hint {
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--color-text-muted);
 }
