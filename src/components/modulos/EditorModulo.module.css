@@ -1,6 +1,4 @@
-.editor {
-  max-width: 900px;
-}
+.editor { max-width: 900px; }
 
 .editorHeader {
   display: flex;
@@ -9,54 +7,60 @@
   margin-bottom: var(--space-6);
 }
 
-.headerActions {
-  display: flex;
-  gap: var(--space-3);
-}
+.headerActions { display: flex; gap: var(--space-3); }
 
 .btnGuardar {
-  padding: var(--space-2) var(--space-5);
+  padding: 9px var(--space-5);
   background: var(--color-primary);
   color: #fff;
   border: none;
   border-radius: var(--radius-sm);
   font-weight: 600;
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   cursor: pointer;
+  box-shadow: 0 1px 4px rgba(224,123,0,0.25);
+  transition: background 0.15s;
 }
-
-.btnGuardar:disabled { opacity: 0.6; cursor: not-allowed; }
+.btnGuardar:hover { background: var(--color-primary-hover); }
+.btnGuardar:disabled { opacity: 0.5; cursor: not-allowed; box-shadow: none; }
 
 .btnCancelar {
-  padding: var(--space-2) var(--space-4);
+  padding: 9px var(--space-4);
   background: transparent;
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 0.9rem;
+  font-size: 0.875rem;
   cursor: pointer;
   color: var(--color-text-muted);
+  transition: border-color 0.15s;
 }
+.btnCancelar:hover { border-color: var(--color-border-strong); }
 
 .error {
   color: var(--color-danger);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   margin-bottom: var(--space-4);
+  padding: var(--space-2) var(--space-3);
+  background: var(--color-danger-bg);
+  border-radius: var(--radius-sm);
 }
 
 .seccion {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
   border-radius: var(--radius-md);
-  padding: var(--space-5);
+  box-shadow: var(--shadow-sm);
+  padding: var(--space-5) var(--space-6);
   margin-bottom: var(--space-5);
 }
 
 .seccion h2 {
-  margin-bottom: var(--space-4);
-  font-size: 1rem;
-  color: var(--color-text-muted);
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: var(--color-text-light);
   text-transform: uppercase;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.08em;
+  margin-bottom: var(--space-4);
 }
 
 .formGrid {
@@ -65,72 +69,30 @@
   gap: var(--space-4);
 }
 
-.field {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-1);
-}
-
-.field label {
-  font-size: 0.8rem;
-  font-weight: 500;
-  color: var(--color-text-muted);
-}
-
-.field input,
-.field select,
-.field textarea {
-  padding: var(--space-2) var(--space-2);
-  border: 1px solid var(--color-border);
-  border-radius: var(--radius-sm);
-  font-size: 0.9rem;
-  font-family: inherit;
-  background: var(--color-bg);
-}
-
-.field input:focus,
-.field select:focus,
-.field textarea:focus {
-  outline: none;
-  border-color: var(--color-border-focus);
-}
-
-.fieldFull {
-  grid-column: 1 / -1;
-}
+.field { display: flex; flex-direction: column; }
+.fieldFull { grid-column: 1 / -1; }
 
 .resumen {
-  background: var(--color-primary-light);
-  border: 1px solid #fcd34d;
+  background: linear-gradient(135deg, #fff8ed 0%, #fff4e0 100%);
+  border: 1.5px solid #f5c97a;
   border-radius: var(--radius-md);
-  padding: var(--space-5);
+  padding: var(--space-5) var(--space-6);
   margin-bottom: var(--space-5);
 }
 
 .resumen h2 {
+  font-size: 0.7rem;
+  font-weight: 700;
+  color: #a05c00;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
   margin-bottom: var(--space-4);
-  font-size: 1rem;
-  color: var(--color-primary-hover);
 }
 
-.resumenGrid {
-  display: flex;
-  gap: var(--space-8);
-  flex-wrap: wrap;
-}
+.resumenGrid { display: flex; gap: var(--space-8); flex-wrap: wrap; }
 
-.resumenItem {
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
-}
+.resumenItem { display: flex; flex-direction: column; gap: 4px; }
 
-.resumenItem span {
-  font-size: 0.8rem;
-  color: var(--color-primary-hover);
-}
+.resumenItem span { font-size: 0.78rem; color: #a05c00; font-weight: 500; }
 
-.resumenItem strong {
-  font-size: 1.2rem;
-  color: var(--color-primary-hover);
-}
+.resumenItem strong { font-size: 1.3rem; color: var(--color-primary-hover); font-weight: 700; }

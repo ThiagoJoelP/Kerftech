@@ -6,7 +6,7 @@
 .tabla {
   width: 100%;
   border-collapse: collapse;
-  font-size: 0.88rem;
+  font-size: 0.855rem;
 }
 
 .tabla th {
@@ -15,85 +15,73 @@
   border-bottom: 2px solid var(--color-border);
   color: var(--color-text-muted);
   font-weight: 600;
-  font-size: 0.78rem;
+  font-size: 0.72rem;
   text-transform: uppercase;
+  letter-spacing: 0.05em;
   white-space: nowrap;
 }
 
 .tabla td {
-  padding: var(--space-1) var(--space-2);
+  padding: 7px var(--space-2);
   border-bottom: 1px solid var(--color-border);
   vertical-align: middle;
 }
 
 .inputTexto {
   width: 130px;
-  padding: var(--space-1) var(--space-2);
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-input-border);
   border-radius: var(--radius-sm);
-  font-size: 0.88rem;
+  font-size: 0.855rem;
   font-family: inherit;
+  background: var(--color-input-bg);
+  padding: 5px 8px;
+  outline: none;
+  transition: border-color 0.15s;
 }
+.inputTexto:focus { border-color: var(--color-primary); box-shadow: var(--shadow-focus); }
 
 .inputNumero {
-  width: 70px;
-  padding: var(--space-1) var(--space-2);
-  border: 1px solid var(--color-border);
+  width: 72px;
+  border: 1.5px solid var(--color-input-border);
   border-radius: var(--radius-sm);
-  font-size: 0.88rem;
+  font-size: 0.855rem;
   font-family: inherit;
-}
-
-.inputTexto:focus,
-.inputNumero:focus {
+  background: var(--color-input-bg);
+  padding: 5px 8px;
   outline: none;
-  border-color: var(--color-border-focus);
+  transition: border-color 0.15s;
+  -moz-appearance: textfield;
 }
+.inputNumero:focus { border-color: var(--color-primary); box-shadow: var(--shadow-focus); }
 
-.tdCheck {
-  text-align: center;
-}
+.tdCheck { text-align: center; }
 
 .btnEliminar {
-  padding: 2px 8px;
+  padding: 3px 9px;
   background: transparent;
-  border: 1px solid var(--color-border);
+  border: 1.5px solid var(--color-border);
   border-radius: var(--radius-sm);
   cursor: pointer;
   color: var(--color-text-muted);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
+  font-weight: 500;
+  transition: all 0.15s;
 }
-
-.btnEliminar:hover {
-  border-color: var(--color-danger);
-  color: var(--color-danger);
-}
+.btnEliminar:hover { border-color: var(--color-danger); color: var(--color-danger); background: var(--color-danger-bg); }
 
 .btnAgregar {
-  margin-top: var(--space-2);
-  padding: var(--space-2) var(--space-4);
+  margin-top: var(--space-3);
+  padding: 7px var(--space-4);
   background: transparent;
-  border: 1px dashed var(--color-border);
+  border: 1.5px dashed var(--color-border);
   border-radius: var(--radius-sm);
-  font-size: 0.85rem;
+  font-size: 0.82rem;
   color: var(--color-text-muted);
   cursor: pointer;
   transition: border-color 0.15s, color 0.15s;
+  font-weight: 500;
 }
+.btnAgregar:hover { border-color: var(--color-primary); color: var(--color-primary); }
 
-.btnAgregar:hover {
-  border-color: var(--color-primary);
-  color: var(--color-primary);
-}
-
-.vacio {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-3);
-  align-items: flex-start;
-}
-
-.vacio p {
-  font-size: 0.85rem;
-  color: var(--color-text-muted);
-}
+.vacio { display: flex; flex-direction: column; gap: var(--space-3); align-items: flex-start; }
+.vacio p { font-size: 0.875rem; color: var(--color-text-muted); }
