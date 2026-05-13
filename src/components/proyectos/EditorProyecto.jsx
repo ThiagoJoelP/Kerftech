@@ -2,7 +2,9 @@ import { useState, useEffect, useMemo } from 'react'
 import { useAuth } from '@/context/AuthContext'
 import { getMateriales } from '@/services/materiales'
 import { getModulos } from '@/services/modulos'
+import { getConfiguracion } from '@/services/configuracion'
 import { calcularPresupuesto, calcularTotalFinal } from '@/utils/presupuesto'
+import { generarPDF } from '@/utils/generarPDF'
 import { uid } from '@/utils/calculos'
 import SelectorModulos from './SelectorModulos'
 import ResumenPresupuesto from './ResumenPresupuesto'
@@ -27,19 +29,23 @@ export default function EditorProyecto({ proyecto, onGuardar, onCancelar }) {
   const [items, setItems] = useState(proyecto?.items ?? [])
   const [modulos, setModulos] = useState([])
   const [materiales, setMateriales] = useState([])
+  const [config, setConfig] = useState(null)
   const [cargando, setCargando] = useState(true)
   const [guardando, setGuardando] = useState(false)
+  const [generandoPDF, setGenerandoPDF] = useState(false)
   const [errorGuardar, setErrorGuardar] = useState('')
   const [mostrarSelector, setMostrarSelector] = useState(false)
 
   useEffect(() => {
     async function cargarDatos() {
-      const [mods, mats] = await Promise.all([
+      const [mods, mats, cfg] = await Promise.all([
         getModulos(user.uid),
         getMateriales(user.uid),
+        getConfiguracion(user.uid),
       ])
       setModulos(mods)
       setMateriales(mats)
+      setConfig(cfg)
       setCargando(false)
     }
     cargarDatos()
@@ -47,16 +53,13 @@ export default function EditorProyecto({ proyecto, onGuardar, onCancelar }) {
 
   const setField = (key, val) => setForm((f) => ({ ...f, [key]: val }))
 
-  // Armar snapshots al agregar un modulo
   const agregarModulo = (modulo) => {
     const placaSnap = materiales.find((m) => m.id === modulo.tipoPlacaId) ?? null
     const cantoDefault = materiales.find((m) => m.tipo === 'canto') ?? null
-
     const herrajesConSnap = (modulo.herrajes ?? []).map((h) => ({
       ...h,
       snap: materiales.find((m) => m.id === h.materialId) ?? null,
     }))
-
     const moduloSnap = {
       ...modulo,
       placaSnap: placaSnap ? { nombre: placaSnap.nombre, precio: placaSnap.precio } : null,
@@ -64,7 +67,6 @@ export default function EditorProyecto({ proyecto, onGuardar, onCancelar }) {
       cantoSnap: cantoDefault ? { nombre: cantoDefault.nombre, precio: cantoDefault.precio } : null,
       herrajes: herrajesConSnap,
     }
-
     setItems((prev) => [...prev, { _id: uid(), moduloId: modulo.id, moduloSnap, cantidad: 1 }])
     setMostrarSelector(false)
   }
@@ -100,6 +102,22 @@ export default function EditorProyecto({ proyecto, onGuardar, onCancelar }) {
     setGuardando(false)
   }
 
+  const handlePDF = () => {
+    if (items.length === 0) { setErrorGuardar('Agrega al menos un modulo antes de generar el PDF.'); return }
+    setGenerandoPDF(true)
+    const proyectoData = {
+      ...form,
+      items,
+    }
+    try {
+      generarPDF(proyectoData, config, config?.pdf ?? {}, lineas, totales)
+    } catch (e) {
+      console.error('Error generando PDF:', e)
+    } finally {
+      setGenerandoPDF(false)
+    }
+  }
+
   if (cargando) return <p className={styles.estado}>Cargando datos...</p>
 
   return (
@@ -108,15 +126,22 @@ export default function EditorProyecto({ proyecto, onGuardar, onCancelar }) {
         <h1>{proyecto ? proyecto.nombre || 'Editar proyecto' : 'Nuevo proyecto'}</h1>
         <div className={styles.headerActions}>
           <button className={styles.btnCancelar} onClick={onCancelar}>Cancelar</button>
+          <button
+            className={styles.btnPDF}
+            onClick={handlePDF}
+            disabled={generandoPDF || items.length === 0}
+            title={items.length === 0 ? 'Agrega modulos primero' : 'Descargar PDF'}
+          >
+            {generandoPDF ? 'Generando...' : 'Descargar PDF'}
+          </button>
           <button className={styles.btnGuardar} onClick={handleGuardar} disabled={guardando}>
-            {guardando ? 'Guardando...' : 'Guardar proyecto'}
+            {guardando ? 'Guardando...' : 'Guardar'}
           </button>
         </div>
       </div>
 
       {errorGuardar && <p className={styles.error}>{errorGuardar}</p>}
 
-      {/* Datos generales */}
       <div className={styles.seccion}>
         <h2>Datos del proyecto</h2>
         <div className={styles.formGrid}>
@@ -143,7 +168,6 @@ export default function EditorProyecto({ proyecto, onGuardar, onCancelar }) {
         </div>
       </div>
 
-      {/* Modulos del proyecto */}
       <div className={styles.seccion}>
         <div className={styles.seccionHeader}>
           <h2>Modulos</h2>
@@ -187,7 +211,6 @@ export default function EditorProyecto({ proyecto, onGuardar, onCancelar }) {
         )}
       </div>
 
-      {/* Mano de obra */}
       <div className={styles.seccion}>
         <h2>Mano de obra</h2>
         <div className={styles.formGrid}>
@@ -212,7 +235,6 @@ export default function EditorProyecto({ proyecto, onGuardar, onCancelar }) {
         </div>
       </div>
 
-      {/* Resumen */}
       <ResumenPresupuesto lineas={lineas} totales={totales} />
     </div>
   )
