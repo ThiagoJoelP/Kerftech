@@ -12,6 +12,8 @@
   align-items: center;
   justify-content: space-between;
   margin-bottom: var(--space-5);
+  flex-wrap: wrap;
+  gap: var(--space-3);
 }
 
 .header h2 {
@@ -24,6 +26,7 @@
   display: flex;
   gap: var(--space-3);
   align-items: center;
+  flex-wrap: wrap;
 }
 
 .filtro {
@@ -46,6 +49,7 @@
   cursor: pointer;
   transition: background 0.15s, box-shadow 0.15s;
   box-shadow: 0 1px 4px rgba(224,123,0,0.25);
+  white-space: nowrap;
 }
 
 .btnAgregar:hover {
@@ -68,6 +72,7 @@
   display: flex;
   flex-direction: column;
   min-width: 140px;
+  flex: 1;
 }
 
 .formField input,
@@ -79,6 +84,7 @@
   display: flex;
   align-items: flex-end;
   gap: var(--space-2);
+  flex-wrap: wrap;
 }
 
 .btnGuardar {
@@ -121,4 +127,29 @@
   padding: var(--space-2) var(--space-3);
   background: var(--color-danger-bg);
   border-radius: var(--radius-sm);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .seccion {
+    padding: var(--space-4);
+  }
+
+  .formNuevo {
+    padding: var(--space-3);
+  }
+
+  .formField {
+    min-width: 100%;
+  }
+
+  .formActions {
+    width: 100%;
+  }
+
+  .btnGuardar,
+  .btnCancelar {
+    flex: 1;
+    text-align: center;
+  }
 }

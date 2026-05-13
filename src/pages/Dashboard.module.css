@@ -21,10 +21,6 @@
   margin-bottom: var(--space-6);
 }
 
-@media (max-width: 700px) {
-  .statsGrid { grid-template-columns: 1fr 1fr; }
-}
-
 .statCard {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -50,9 +46,7 @@
   color: var(--color-text-muted);
 }
 
-.statDestacado .statLabel {
-  color: #a0a8b8;
-}
+.statDestacado .statLabel { color: #a0a8b8; }
 
 .statVal {
   font-size: 1.7rem;
@@ -82,10 +76,6 @@
   gap: var(--space-4);
 }
 
-@media (max-width: 700px) {
-  .cols { grid-template-columns: 1fr; }
-}
-
 .panel {
   background: var(--color-surface);
   border: 1px solid var(--color-border);
@@ -103,7 +93,6 @@
   margin-bottom: var(--space-4);
 }
 
-/* Estado rows */
 .estadoRow {
   display: flex;
   align-items: center;
@@ -136,7 +125,6 @@
   text-align: right;
 }
 
-/* Recientes */
 .recienteRow {
   display: flex;
   align-items: center;
@@ -186,4 +174,21 @@
   font-size: 0.875rem;
   color: var(--color-text-muted);
   padding: var(--space-3) 0;
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .statsGrid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .statDestacado {
+    grid-column: 1 / -1;
+  }
+
+  .statDestacado .statVal { font-size: 1.6rem; }
+
+  .cols {
+    grid-template-columns: 1fr;
+  }
 }

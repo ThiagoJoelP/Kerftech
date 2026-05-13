@@ -1,16 +1,17 @@
-.page {
-  max-width: 980px;
-}
+.page { max-width: 980px; }
 
 .pageHeader {
   margin-bottom: var(--space-6);
 }
 
-.pageHeader h1 {
-  margin-bottom: 4px;
-}
+.pageHeader h1 { margin-bottom: 4px; }
 
 .hint {
   font-size: 0.82rem;
   color: var(--color-text-muted);
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+  .hint { display: none; }
 }
