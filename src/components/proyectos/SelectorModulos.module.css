@@ -7,13 +7,15 @@
   justify-content: center;
   z-index: 100;
   backdrop-filter: blur(2px);
+  padding: var(--space-4);
 }
 
 .panel {
   background: var(--color-surface);
   border-radius: var(--radius-lg);
   width: 500px;
-  max-height: 72vh;
+  max-width: 100%;
+  max-height: 80vh;
   display: flex;
   flex-direction: column;
   box-shadow: var(--shadow-lg);
@@ -26,6 +28,7 @@
   justify-content: space-between;
   padding: var(--space-4) var(--space-5);
   border-bottom: 1px solid var(--color-border);
+  flex-shrink: 0;
 }
 
 .panelHeader h3 { font-size: 0.95rem; font-weight: 600; }
@@ -39,6 +42,7 @@
   padding: 4px 8px;
   border-radius: var(--radius-sm);
   transition: background 0.12s;
+  line-height: 1;
 }
 .btnCerrar:hover { background: var(--color-surface-hover); color: var(--color-text); }
 
@@ -48,12 +52,17 @@
   padding: var(--space-3) var(--space-5);
   border-bottom: 1px solid var(--color-border);
   background: var(--color-bg);
+  flex-shrink: 0;
 }
 
-.buscador { flex: 1; }
-.filtroSelect { min-width: 130px; }
+.buscador { flex: 1; min-width: 0; }
+.filtroSelect { width: 130px; flex-shrink: 0; }
 
-.lista { overflow-y: auto; padding: var(--space-2) 0; }
+.lista {
+  overflow-y: auto;
+  padding: var(--space-2) 0;
+  flex: 1;
+}
 
 .itemModulo {
   display: flex;
@@ -74,4 +83,30 @@
 .itemNombre { font-size: 0.9rem; font-weight: 600; color: var(--color-text); }
 .itemMeta { font-size: 0.75rem; color: var(--color-text-muted); text-transform: capitalize; }
 
-.vacio { padding: var(--space-5) var(--space-5); color: var(--color-text-muted); font-size: 0.875rem; }
+.vacio { padding: var(--space-5); color: var(--color-text-muted); font-size: 0.875rem; }
+
+/* Mobile */
+@media (max-width: 768px) {
+  .overlay {
+    align-items: flex-end;
+    padding: 0;
+  }
+
+  .panel {
+    width: 100%;
+    max-height: 85vh;
+    border-radius: var(--radius-lg) var(--radius-lg) 0 0;
+  }
+
+  .filtros {
+    flex-direction: column;
+  }
+
+  .filtroSelect { width: 100%; }
+
+  .itemModulo {
+    padding: var(--space-4) var(--space-4);
+  }
+
+  .itemNombre { font-size: 1rem; }
+}
