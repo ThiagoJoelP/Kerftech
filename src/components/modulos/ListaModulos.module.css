@@ -1,0 +1,70 @@
+.page {
+  max-width: 960px;
+}
+
+.pageHeader {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: var(--space-5);
+}
+
+.btnNuevo {
+  padding: var(--space-2) var(--space-5);
+  background: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.15s;
+}
+
+.btnNuevo:hover { background: var(--color-primary-hover); }
+
+.filtros {
+  display: flex;
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
+}
+
+.buscador {
+  flex: 1;
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  background: var(--color-surface);
+}
+
+.buscador:focus {
+  outline: none;
+  border-color: var(--color-border-focus);
+}
+
+.filtroSelect {
+  padding: var(--space-2) var(--space-3);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  background: var(--color-surface);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: var(--space-4);
+}
+
+.estado {
+  color: var(--color-text-muted);
+  font-size: 0.9rem;
+  padding: var(--space-4) 0;
+}
+
+.error {
+  color: var(--color-danger);
+  font-size: 0.85rem;
+  margin-bottom: var(--space-3);
+}
