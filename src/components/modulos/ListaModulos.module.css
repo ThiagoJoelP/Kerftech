@@ -32,10 +32,14 @@
 
 .buscador {
   flex: 1;
-  max-width: 300px;
+  min-width: 0;
+  width: auto;
 }
 
-.filtroSelect { min-width: 180px; }
+.filtroSelect {
+  width: 200px;
+  flex-shrink: 0;
+}
 
 .grid {
   display: grid;
