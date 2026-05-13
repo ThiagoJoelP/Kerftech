@@ -1,4 +1,5 @@
-import { NavLink } from 'react-router-dom'
+import { useEffect } from 'react'
+import { NavLink, useLocation } from 'react-router-dom'
 import { signOut } from 'firebase/auth'
 import { auth } from '@/firebase/config'
 import styles from './Sidebar.module.css'
@@ -11,16 +12,26 @@ const navItems = [
   { to: '/configuracion', label: 'Configuracion' },
 ]
 
-export default function Sidebar() {
+export default function Sidebar({ open, onClose }) {
+  const location = useLocation()
+
+  // Cerrar al navegar en mobile
+  useEffect(() => {
+    onClose?.()
+  }, [location.pathname])
+
   const handleLogout = () => signOut(auth)
 
   return (
-    <aside className={styles.sidebar}>
+    <aside className={`${styles.sidebar} ${open ? styles.open : ''}`}>
       <div className={styles.logoWrap}>
         <div className={styles.logo}>
           <span className={styles.logoAccent} />
           Kerftech
         </div>
+        <button className={styles.btnCerrar} onClick={onClose} aria-label="Cerrar menu">
+          &#x2715;
+        </button>
       </div>
       <nav className={styles.nav}>
         {navItems.map(({ to, label, end }) => (
